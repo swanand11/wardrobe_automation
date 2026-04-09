@@ -1,5 +1,6 @@
 import sys
 import os
+import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, jsonify, request
@@ -32,14 +33,12 @@ def home():
 
 @app.route("/items", methods=["GET"])
 def get_items():
-    return jsonify(df.to_dict("records"))
+    return jsonify(loader.get_items())
 
 
 @app.route("/items/<item_type>", methods=["GET"])
 def get_items_by_type(item_type):
-    items = df[df["type"] == item_type.lower()]
-    return jsonify(items.to_dict("records"))
-
+    return jsonify(loader.get_items_by_type(item_type))
 
 @app.route("/suggest/<item_name>", methods=["GET"])
 def suggest_outfit(item_name):
@@ -80,4 +79,4 @@ def graph_stats():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=8000)

@@ -1,24 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Wardrobe AI</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wardrobe Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="container">
+    <h1>Wardrobe Outfit Generator</h1>
+    <p class="subtitle">Pick any item — we'll build a compatible outfit around it.</p>
 
-<h1>Wardrobe Outfit Generator</h1>
+    <div class="controls">
+      <label class="ctrl-label">Choose a starting item</label>
+      <select id="itemSelect"></select>
+    </div>
 
-<div class="controls">
-    <select id="itemSelect"></select>
-    <button onclick="generateOutfit()">Suggest Outfit</button>
-</div>
+    <div class="actions">
+      <button id="btnSuggest" onclick="suggest()">Suggest outfit</button>
+      <button id="btnShuffle" onclick="shuffleOutfit()">Shuffle</button>
+      <button id="btnBest" onclick="bestOutfit()">Best outfit</button>
+    </div>
 
-<h2>Suggested Outfit</h2>
+    <div class="filter-chips" id="filterChips"></div>
 
-<div id="outfitContainer" class="outfit"></div>
+    <div class="layout">
+      <div class="preview-wrap">
+        <div class="mq-label">Outfit preview</div>
 
-<script src="script.js"></script>
+        <div class="preview-row">
+          <div id="watch-preview" class="watch-preview" aria-label="Watch preview"></div>
 
+          <div class="outfit-preview" aria-label="Outfit preview">
+            <div id="layer-top" class="layer top"></div>
+            <div id="layer-bottom" class="layer bottom"></div>
+            <div id="layer-shoes" class="layer shoes"></div>
+          </div>
+        </div>
+
+        <div id="meta" class="outfit-meta"></div>
+      </div>
+
+      <div class="cards-col">
+        <div id="cards" class="outfit-grid">
+          <div class="empty-state">
+            <p>Select an item and hit suggest</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
